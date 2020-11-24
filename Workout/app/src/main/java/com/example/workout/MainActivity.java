@@ -22,7 +22,8 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView timerView, setTextView, prevTextView;
+    Button reset, restartButton, setButton;
+    TextView setTextView, prevTextView, timerView;
     Handler handler = new Handler();
     int Set=0;
     Boolean running = false;
@@ -35,13 +36,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        setTextView = (TextView)findViewById(R.id.setTextView);
-        prevTextView = (TextView)findViewById(R.id.prevTimerTextView);
-        timerView = (TextView)findViewById(R.id.timer);
-
-        Button reset = findViewById(R.id.reset);
-        Button setButton = findViewById(R.id.setButton);
-        Button restartButton = findViewById(R.id.restartButton);
+        initViews();
+        initButtons();
 
         restartButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 takeSnapShot();
                 stopWatch.resetTime();
-                updatePrevTimesText();
+                updatePrevTimesTextView();
             }
         });
 
@@ -84,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
                 reset.setText("Reset");
                 stopWatch.resetTime();
                 handler.postDelayed(runnable, 0);
-                updatePrevTimesText();
+                updatePrevTimesTextView();
             }
         });
     }
@@ -93,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         setTextView.setText(Integer.toString(Set));
     }
 
-    private void updatePrevTimesText(){
+    private void updatePrevTimesTextView(){
         String result = new String();
         Iterator<String> prevTimesIt = prevTimes.iterator();
         Iterator<Integer> setsIt = sets.iterator();
@@ -117,4 +113,16 @@ public class MainActivity extends AppCompatActivity {
         }
 
     };
+
+    private void initButtons(){
+        reset = findViewById(R.id.reset);
+        setButton = findViewById(R.id.setButton);
+        restartButton = findViewById(R.id.restartButton);
+    }
+
+    private void initViews(){
+        setTextView = (TextView)findViewById(R.id.setTextView);
+        prevTextView = (TextView)findViewById(R.id.prevTimerTextView);
+        timerView = (TextView)findViewById(R.id.timer);
+    }
 }

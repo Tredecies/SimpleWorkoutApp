@@ -23,9 +23,9 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
 
     TextView timer, setTextView, prevTextView;
-    long MillisecondTime, StartTime, TimeBuff, UpdateTime = 0L;
+    long StartTime = 0;
     Handler handler = new Handler();
-    int Seconds, Minutes, MilliSeconds, Set=0;
+    int Set=0;
     Boolean running = false;
     List<String> prevTimes = new ArrayList<String>();
     List<Integer> sets = new ArrayList<Integer>();
@@ -106,33 +106,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void takeSnapShot(){
-        prevTimes.add(getCurrentTime());
+        prevTimes.add(stopWatch.getCurrentTime(StartTime));
         sets.add(Set);
-    }
-
-    public String getCurrentTime(){
-        MillisecondTime = SystemClock.uptimeMillis() - StartTime;
-
-        UpdateTime = TimeBuff + MillisecondTime;
-
-        Seconds = (int) (UpdateTime / 1000);
-
-        Minutes = Seconds / 60;
-
-        Seconds = Seconds % 60;
-
-        MilliSeconds = (int) (UpdateTime % 1000);
-
-        String result = String.format(
-                Locale.getDefault(),
-                "%02d:%02d:%03d", Minutes, Seconds, MilliSeconds);
-        return result;
     }
 
     public Runnable runnable = new Runnable() {
 
         public void run() {
-            timer.setText(getCurrentTime());
+            timer.setText(stopWatch.getCurrentTime(StartTime));
             handler.postDelayed(this, 0);
         }
 

@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     Boolean running = false;
     List<String> prevTimes = new ArrayList<String>();
     List<Integer> sets = new ArrayList<Integer>();
+    private StopWatch stopWatch = new StopWatch();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
                 takeSnapShot();
-                resetTime();
+                StartTime = stopWatch.resetTime();
                 updatePrevTimesText();
             }
         });
@@ -82,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                     takeSnapShot();
                 }
                 reset.setText("Reset");
-                resetTime();
+                StartTime = stopWatch.resetTime();
                 handler.postDelayed(runnable, 0);
                 updatePrevTimesText();
             }
@@ -107,10 +108,6 @@ public class MainActivity extends AppCompatActivity {
     private void takeSnapShot(){
         prevTimes.add(getCurrentTime());
         sets.add(Set);
-    }
-
-    private void resetTime(){
-        StartTime = SystemClock.uptimeMillis();
     }
 
     public String getCurrentTime(){

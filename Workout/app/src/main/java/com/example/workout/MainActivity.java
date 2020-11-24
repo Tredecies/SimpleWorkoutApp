@@ -22,7 +22,7 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView timer, setTextView, prevTextView;
+    TextView timerView, setTextView, prevTextView;
     Handler handler = new Handler();
     int Set=0;
     Boolean running = false;
@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
         setTextView = (TextView)findViewById(R.id.setTextView);
         prevTextView = (TextView)findViewById(R.id.prevTimerTextView);
-        timer = (TextView)findViewById(R.id.timer);
+        timerView = (TextView)findViewById(R.id.timer);
 
         Button reset = findViewById(R.id.reset);
         Button setButton = findViewById(R.id.setButton);
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                 sets.clear();
                 stopWatch.resetTime();
                 updateSetTextView();
-                timer.setText("00:00:00");
+                timerView.setText("00:00:00");
                 handler.removeCallbacks(runnable);
                 reset.setText("Start");
                 prevTimes.clear();
@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
     public Runnable runnable = new Runnable() {
 
         public void run() {
-            timer.setText(stopWatch.getCurrentTime());
+            timerView.setText(stopWatch.getCurrentTime());
             handler.postDelayed(this, 0);
         }
 

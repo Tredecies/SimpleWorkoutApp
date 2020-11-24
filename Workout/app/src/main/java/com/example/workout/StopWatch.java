@@ -5,8 +5,7 @@ import android.os.SystemClock;
 import java.util.Locale;
 
 public class StopWatch {
-    private long MillisecondTime, StartTime, TimeBuff, UpdateTime = 0L;
-    private int Seconds, Minutes, MilliSeconds, Set=0;
+    private long StartTime;
 
     public long resetTime() {
         StartTime = SystemClock.uptimeMillis();
@@ -14,17 +13,11 @@ public class StopWatch {
     }
 
     public String getCurrentTime(){
-        MillisecondTime = SystemClock.uptimeMillis() - StartTime;
-
-        UpdateTime = TimeBuff + MillisecondTime;
-
-        Seconds = (int) (UpdateTime / 1000);
-
-        Minutes = Seconds / 60;
-
+        long MillisecondTime = SystemClock.uptimeMillis() - StartTime;
+        long Seconds = (int) (MillisecondTime / 1000);
+        long Minutes = Seconds / 60;
         Seconds = Seconds % 60;
-
-        MilliSeconds = (int) (UpdateTime % 1000);
+        long MilliSeconds = (int) (MillisecondTime % 1000);
 
         String result = String.format(
                 Locale.getDefault(),

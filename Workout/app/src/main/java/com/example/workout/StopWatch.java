@@ -13,7 +13,7 @@ public class StopWatch {
         return StartTime;
     }
 
-    public String getCurrentTime(long StartTime){
+    public String getCurrentTime(){
         MillisecondTime = SystemClock.uptimeMillis() - StartTime;
 
         UpdateTime = TimeBuff + MillisecondTime;

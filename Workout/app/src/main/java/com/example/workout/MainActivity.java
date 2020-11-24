@@ -23,7 +23,6 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
 
     TextView timer, setTextView, prevTextView;
-    long StartTime = 0;
     Handler handler = new Handler();
     int Set=0;
     Boolean running = false;
@@ -49,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Set = 0;
                 sets.clear();
-                StartTime = SystemClock.uptimeMillis();
+                stopWatch.resetTime();
                 updateSetTextView();
                 timer.setText("00:00:00");
                 handler.removeCallbacks(runnable);
@@ -69,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
                 takeSnapShot();
-                StartTime = stopWatch.resetTime();
+                stopWatch.resetTime();
                 updatePrevTimesText();
             }
         });
@@ -83,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
                     takeSnapShot();
                 }
                 reset.setText("Reset");
-                StartTime = stopWatch.resetTime();
+                stopWatch.resetTime();
                 handler.postDelayed(runnable, 0);
                 updatePrevTimesText();
             }
@@ -106,14 +105,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void takeSnapShot(){
-        prevTimes.add(stopWatch.getCurrentTime(StartTime));
+        prevTimes.add(stopWatch.getCurrentTime());
         sets.add(Set);
     }
 
     public Runnable runnable = new Runnable() {
 
         public void run() {
-            timer.setText(stopWatch.getCurrentTime(StartTime));
+            timer.setText(stopWatch.getCurrentTime());
             handler.postDelayed(this, 0);
         }
 

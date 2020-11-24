@@ -22,6 +22,7 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
+    private final String SNAPSHOT_TIME_FORMAT = "%02d:%02d";
     Button reset, restartButton, setButton;
     TextView setTextView, prevTextView, timerView;
     Handler handler = new Handler();
@@ -101,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void takeSnapShot(){
-        prevTimes.add(stopWatch.getCurrentTime("%02d:%02d"));
+        prevTimes.add(stopWatch.getCurrentTime(SNAPSHOT_TIME_FORMAT));
         sets.add(Set);
     }
 

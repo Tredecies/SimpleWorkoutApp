@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Workout</string>
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="reset">Start</string>
+    <string name="setText">0</string>
+    <string name="setButton">Set</string>
+    <string name="text">00:00:00</string>
+    <string name="restart">Restart</string>
+</resources>

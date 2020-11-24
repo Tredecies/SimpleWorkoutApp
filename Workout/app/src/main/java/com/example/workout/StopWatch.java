@@ -13,6 +13,10 @@ public class StopWatch {
     }
 
     public String getCurrentTime(){
+        return getCurrentTime("%02d:%02d:%03d");
+    }
+
+    public String getCurrentTime(String format){
         long MillisecondTime = SystemClock.uptimeMillis() - StartTime;
         long Seconds = (int) (MillisecondTime / 1000);
         long Minutes = Seconds / 60;
@@ -21,8 +25,9 @@ public class StopWatch {
 
         String result = String.format(
                 Locale.getDefault(),
-                "%02d:%02d:%03d", Minutes, Seconds, MilliSeconds);
+                format, Minutes, Seconds, MilliSeconds);
         return result;
     }
+
 
 }

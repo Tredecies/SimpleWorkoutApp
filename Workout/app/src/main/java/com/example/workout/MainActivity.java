@@ -99,13 +99,13 @@ public class MainActivity extends AppCompatActivity {
         Iterator<Integer> setsIt = sets.iterator();
         while(prevTimesIt.hasNext() && setsIt.hasNext())
         for (Integer i=0; i<prevTimes.size(); i++){
-            result += prevTimesIt.next() + " --- " + setsIt.next() + "\n";
+            result += prevTimesIt.next() + " --- Set: " + setsIt.next() + "\n";
         }
         prevTextView.setText(result);
     }
 
     private void takeSnapShot(){
-        prevTimes.add(stopWatch.getCurrentTime());
+        prevTimes.add(stopWatch.getCurrentTime("%02d:%02d"));
         sets.add(Set);
     }
 
